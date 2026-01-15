@@ -1,53 +1,53 @@
 file,error
-1002688_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1003256_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1004007_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1004800_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1011696_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1012034_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1013103_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1015377_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1016890_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1018708_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1019264_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1019533_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1019875_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1022717_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1025716_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1027707_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1033544_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1033769_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1034964_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1036119_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1040453_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1042391_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1043355_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1046829_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1047831_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1050464_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1053513_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1055909_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1056309_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1057644_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1060577_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1063403_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1064528_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1067759_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1067855_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1069285_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1070083_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1070513_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1071667_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1072991_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1073272_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1074157_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1078147_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1079457_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1079813_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1080030_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1087328_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1087599_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1094231_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1094429_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1097234_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
-1099786_6025_0_0.npz,"The length of the input vector x must be greater than padlen, which is 27."
+1002688_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1003256_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1004007_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1004800_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1011696_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1012034_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1013103_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1015377_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1016890_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1018708_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1019264_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1019533_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1019875_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1022717_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1025716_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1027707_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1033544_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1033769_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1034964_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1036119_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1040453_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1042391_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1043355_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1046829_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1047831_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1050464_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1053513_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1055909_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1056309_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1057644_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1060577_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1063403_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1064528_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1067759_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1067855_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1069285_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1070083_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1070513_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1071667_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1072991_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1073272_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1074157_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1078147_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1079457_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1079813_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1080030_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1087328_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1087599_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1094231_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1094429_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1097234_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'
+1099786_6025_0_0.npz,wavelet_bandpass_05_40() got an unexpected keyword argument 'mode'

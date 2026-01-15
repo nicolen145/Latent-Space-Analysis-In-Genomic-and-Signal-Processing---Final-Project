@@ -1,46 +1,62 @@
+"""
+
+Cleans ECG signals stored as NPZ files (fs + per-lead arrays) using:
+  1) DC removal (per lead)
+  2) Wavelet-based approximate bandpass filtering (~0.5–40 Hz) with db4
+  3) Z-score normalization (per lead)
+
+Outputs:
+  - Cleaned full-length NPZ files in: cleaned_signals_full/
+  - One example before/after plot in: OUTPUTS/
+  - errors_cleaning.csv if failures occur
+
+Notes:
+  - This is NOT a clinical filter; wavelet band boundaries are approximate.
+  - Use pip install pywavelets if needed.
+"""
+
 import os
 import glob
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
+import pywt
 
-from scipy.signal import butter, filtfilt
 
-
-# ----------------------------
-# Configuration
-# ----------------------------
+# ============================================================
+# CONFIG
+# ============================================================
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-INPUT_DIR = os.path.join(BASE_DIR, "parsed_signals_full")
+RAW_DIR = os.path.join(BASE_DIR, "parsed_signals_full")
 CLEAN_DIR = os.path.join(BASE_DIR, "cleaned_signals_full")
 OUTPUTS_DIR = os.path.join(BASE_DIR, "OUTPUTS")
 
 os.makedirs(CLEAN_DIR, exist_ok=True)
 os.makedirs(OUTPUTS_DIR, exist_ok=True)
 
-# Cleaning settings
-BANDPASS_LOW = 0.5
-BANDPASS_HIGH = 40.0
-FILTER_ORDER = 4
+# Wavelet / bandpass settings
+WAVELET_NAME = "db4"
+LOWCUT_HZ = 0.5
+HIGHCUT_HZ = 40.0
 
-# Plot settings (one example file)
+# Plot settings (one example)
 PLOT_SECONDS = 10
-PLOT_LEAD_INDEX = 0  # 0 => first lead (after sorting keys)
+PLOT_LEAD_INDEX = 0  # first lead after sorting lead keys
 
 
-# ----------------------------
-# Signal loading (NPZ format: fs + per-lead arrays)
-# ----------------------------
+# ============================================================
+# NPZ LOADING/SAVING (format: fs + per-lead arrays)
+# ============================================================
 
 def load_npz_leads(npz_path):
     """
     Load ECG from NPZ where:
       - 'fs' exists (scalar or length-1 array)
-      - each lead is stored as its own 1D array (e.g., 'I', 'II', 'III')
-
+      - each lead is stored as its own 1D array (e.g., I, II, III, ...)
     Returns:
-      leads_matrix: (T, C) float32
+      mat: (T, C) float32
       fs: float
       lead_names: list[str]
     """
@@ -51,93 +67,133 @@ def load_npz_leads(npz_path):
 
     fs = float(np.array(d["fs"]).reshape(-1)[0])
 
-    # Lead keys = all keys except 'fs'
     lead_keys = [k for k in d.files if k != "fs"]
-
-    if not lead_keys:
-        raise ValueError("No lead arrays found (only 'fs' exists).")
-
     # Keep only 1D arrays with meaningful length (avoid scalars/metadata)
-    lead_keys = [k for k in lead_keys if isinstance(d[k], np.ndarray) and d[k].ndim == 1 and d[k].size > 30]
-
+    lead_keys = [
+        k for k in lead_keys
+        if isinstance(d[k], np.ndarray) and d[k].ndim == 1 and d[k].size > 30
+    ]
     if not lead_keys:
-        raise ValueError("No valid lead arrays found (all too short).")
+        raise ValueError("No valid lead arrays found in NPZ.")
 
-    # Sort lead keys for consistent channel order (I, II, III, V1...)
     lead_keys = sorted(lead_keys)
 
-    # Ensure all leads have the same length (truncate to min if needed)
+    # Align lead lengths (truncate to minimum)
     lengths = [d[k].shape[0] for k in lead_keys]
     T = min(lengths)
 
-    leads = np.stack([d[k][:T].astype(np.float32) for k in lead_keys], axis=1)  # (T, C)
+    mat = np.stack([d[k][:T].astype(np.float32) for k in lead_keys], axis=1)
+    return mat, fs, lead_keys
 
-    return leads, fs, lead_keys
 
-
-def save_npz_leads(out_path, leads_matrix, fs, lead_names):
+def save_npz_leads(out_path, mat, fs, lead_names):
     """
-    Save cleaned ECG in the same format:
-      fs + per-lead arrays (1D)
+    Save cleaned ECG in NPZ with the same structure:
+      - fs
+      - each lead as a separate 1D array
     """
     payload = {"fs": np.array([fs], dtype=np.float32)}
-    for i, name in enumerate(lead_names):
-        payload[name] = leads_matrix[:, i].astype(np.float32)
-
+    for c, name in enumerate(lead_names):
+        payload[name] = mat[:, c].astype(np.float32)
     np.savez(out_path, **payload)
 
 
-# ----------------------------
-# Cleaning
-# ----------------------------
+# ============================================================
+# WAVELET BANDPASS (APPROX 0.5–40 Hz)
+# ============================================================
 
-def bandpass_filter(x, fs, low=0.5, high=40.0, order=4):
-    """Zero-phase bandpass filter using filtfilt."""
-    nyq = 0.5 * fs
-    b, a = butter(order, [low / nyq, high / nyq], btype="band")
-    return filtfilt(b, a, x, axis=0)
-
-
-def zscore_per_channel(x, eps=1e-8):
-    """Z-score normalize each channel independently."""
-    mean = x.mean(axis=0, keepdims=True)
-    std = x.std(axis=0, keepdims=True)
-    return (x - mean) / (std + eps)
-
-
-def clean_ecg(leads_matrix, fs, min_len=200):
+def pick_level_for_lowcut(fs, lowcut_hz=0.5):
     """
-    Clean ECG:
-      1) Remove DC offset
-      2) Bandpass 0.5-40 Hz
-      3) Z-score per channel
-
-    Safety:
-      - Reject signals that are too short for stable filtering.
+    Pick decomposition level L such that A_L cutoff (~fs / 2^(L+1)) is close to lowcut_hz.
+    This is approximate (wavelet bands are not brick-wall filters).
     """
-    x = leads_matrix.astype(np.float32)
+    L = 1
+    while (fs / (2 ** (L + 1))) > lowcut_hz and L < 12:
+        L += 1
+    return L
 
-    if x.shape[0] < min_len:
-        raise ValueError(f"Signal too short for filtering: length={x.shape[0]} < {min_len}")
 
-    # Remove DC offset
+def wavelet_bandpass_1d(x, fs, wavelet="db4", lowcut_hz=0.5, highcut_hz=40.0):
+    """
+    Wavelet-based approximate bandpass by zeroing coefficients outside [lowcut_hz, highcut_hz].
+
+    coeffs = [A_L, D_L, D_{L-1}, ..., D_1]
+      - A_L corresponds to very low frequencies (< fs/2^(L+1))
+      - D_j corresponds roughly to (fs/2^(j+1), fs/2^j)
+
+    We remove A_L to enforce lowcut, and remove D_j bands that do not overlap the target range.
+    """
+    x = x.astype(np.float32)
+
+    # Choose a level that reaches down to ~lowcut_hz
+    L = pick_level_for_lowcut(fs, lowcut_hz=lowcut_hz)
+
+    coeffs = pywt.wavedec(x, wavelet, level=L)
+    new_coeffs = [coeffs[0].copy()]  # A_L
+
+    # Remove very-low frequencies (<~lowcut) by zeroing A_L
+    new_coeffs[0] = np.zeros_like(new_coeffs[0])
+
+    # Keep only detail bands overlapping the desired range
+    for idx in range(1, len(coeffs)):
+        d = coeffs[idx]
+
+        # idx=1 => D_L (lowest detail band), idx=2 => D_{L-1}, ..., idx=-1 => D_1
+        j = L - (idx - 1)
+
+        band_low = fs / (2 ** (j + 1))
+        band_high = fs / (2 ** j)
+
+        overlaps = (band_high >= lowcut_hz) and (band_low <= highcut_hz)
+
+        if overlaps:
+            new_coeffs.append(d)
+        else:
+            new_coeffs.append(np.zeros_like(d))
+
+    y = pywt.waverec(new_coeffs, wavelet)
+    return y[:len(x)].astype(np.float32)
+
+
+def clean_ecg_wavelet(mat, fs, wavelet="db4", lowcut_hz=0.5, highcut_hz=40.0):
+    """
+    Cleaning pipeline:
+      1) DC removal (per lead)
+      2) Wavelet bandpass (~0.5–40 Hz) per lead
+      3) Z-score normalization (per lead)
+    """
+    x = mat.astype(np.float32)
+
+    # DC removal
     x = x - x.mean(axis=0, keepdims=True)
 
-    # Bandpass
-    x = bandpass_filter(x, fs, BANDPASS_LOW, BANDPASS_HIGH, FILTER_ORDER)
+    # Wavelet bandpass per lead
+    out = np.zeros_like(x, dtype=np.float32)
+    for ch in range(x.shape[1]):
+        out[:, ch] = wavelet_bandpass_1d(
+            x[:, ch],
+            fs=fs,
+            wavelet=wavelet,
+            lowcut_hz=lowcut_hz,
+            highcut_hz=highcut_hz
+        )
 
-    # Normalize
-    x = zscore_per_channel(x)
+    # Z-score normalization per lead
+    mean = out.mean(axis=0, keepdims=True)
+    std = out.std(axis=0, keepdims=True) + 1e-8
+    out = (out - mean) / std
 
-    return x
+    return out
 
 
-# ----------------------------
-# Plot one example (before vs after) and save
-# ----------------------------
+# ============================================================
+# PLOT EXAMPLE (BEFORE vs AFTER) AND SAVE
+# ============================================================
 
 def save_before_after_plot(out_png_path, raw_mat, clean_mat, fs, lead_names, lead_index=0, seconds=10):
-    """Save a two-panel plot (before/after) for one lead."""
+    """
+    Save a two-panel plot for one lead: raw vs cleaned.
+    """
     n = min(int(seconds * fs), raw_mat.shape[0], clean_mat.shape[0])
     t = np.arange(n) / fs
 
@@ -153,7 +209,7 @@ def save_before_after_plot(out_png_path, raw_mat, clean_mat, fs, lead_names, lea
 
     plt.subplot(2, 1, 2)
     plt.plot(t, clean_mat[:n, lead_index])
-    plt.title(f"Cleaned ECG (After Bandpass + Z-score) - {lead_name}")
+    plt.title(f"Cleaned ECG (Wavelet db4 bandpass {LOWCUT_HZ}-{HIGHCUT_HZ} Hz + Z-score) - {lead_name}")
     plt.xlabel("Time (seconds)")
     plt.ylabel("Amplitude (z-score)")
     plt.grid(True)
@@ -163,58 +219,52 @@ def save_before_after_plot(out_png_path, raw_mat, clean_mat, fs, lead_names, lea
     plt.close()
 
 
-# ----------------------------
-# Batch processing
-# ----------------------------
+# ============================================================
+# MAIN
+# ============================================================
 
 def main():
-    npz_files = sorted(glob.glob(os.path.join(INPUT_DIR, "*.npz")))
-    print(f"Found {len(npz_files)} NPZ files in: {INPUT_DIR}")
+    files = sorted(glob.glob(os.path.join(RAW_DIR, "*.npz")))
+    print(f"Found {len(files)} raw files in: {RAW_DIR}")
 
     errors = []
     example_saved = False
 
-    for i, path in enumerate(npz_files, start=1):
+    for i, path in enumerate(files, start=1):
         base = os.path.splitext(os.path.basename(path))[0]
-        print(f"[{i}/{len(npz_files)}] Processing: {base}")
+        print(f"[{i}/{len(files)}] Cleaning: {base}")
 
         try:
             raw_mat, fs, lead_names = load_npz_leads(path)
-            clean_mat = clean_ecg(raw_mat, fs)
 
-            # Save cleaned NPZ (same structure)
-            out_npz = os.path.join(CLEAN_DIR, f"{base}.npz")
-            save_npz_leads(out_npz, clean_mat, fs, lead_names)
+            clean_mat = clean_ecg_wavelet(
+                raw_mat,
+                fs=fs,
+                wavelet=WAVELET_NAME,
+                lowcut_hz=LOWCUT_HZ,
+                highcut_hz=HIGHCUT_HZ
+            )
 
-            # Save one example plot (first file that succeeds)
+            out_clean = os.path.join(CLEAN_DIR, f"{base}.npz")
+            save_npz_leads(out_clean, clean_mat, fs, lead_names)
+
+            # Save one example plot (first successful file)
             if not example_saved:
-                out_png = os.path.join(OUTPUTS_DIR, f"{base}_before_after.png")
-                save_before_after_plot(
-                    out_png_path=out_png,
-                    raw_mat=raw_mat,
-                    clean_mat=clean_mat,
-                    fs=fs,
-                    lead_names=lead_names,
-                    lead_index=PLOT_LEAD_INDEX,
-                    seconds=PLOT_SECONDS
-                )
+                out_png = os.path.join(OUTPUTS_DIR, f"{base}_before_after_wavelet_bandpass.png")
+                save_before_after_plot(out_png, raw_mat, clean_mat, fs, lead_names, PLOT_LEAD_INDEX, PLOT_SECONDS)
                 print(f"Saved example plot to: {out_png}")
                 example_saved = True
 
         except Exception as e:
             errors.append({"file": os.path.basename(path), "error": str(e)})
+            print(f"  -> FAILED: {e}")
 
-    # Write errors file if needed
     if errors:
         err_path = os.path.join(CLEAN_DIR, "errors_cleaning.csv")
-        import csv
-        with open(err_path, "w", newline="", encoding="utf-8") as f:
-            w = csv.DictWriter(f, fieldnames=["file", "error"])
-            w.writeheader()
-            w.writerows(errors)
-        print(f"Some files failed. See: {err_path}")
+        pd.DataFrame(errors).to_csv(err_path, index=False)
+        print(f"\nSome files failed. Errors saved to: {err_path}")
 
-    print("Done.")
+    print("\nDone.")
 
 
 if __name__ == "__main__":
