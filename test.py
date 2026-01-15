@@ -1,33 +1,34 @@
-import numpy as np
-import matplotlib.pyplot as plt
+import pandas as pd
 from pathlib import Path
 
-npz_path = Path("parsed_signals_full/1004800_6025_0_0.npz")
-out_png = npz_path.with_suffix(".png")
 
-z = np.load(npz_path)
+def main():
+    in_csv = Path("metadata_all_with_signals.csv")
+    out_csv = Path("metedata_all_full_only.csv")
 
-fs = float(z["fs"][0])
-t = np.arange(len(z["I"])) / fs
+    if not in_csv.exists():
+        raise SystemExit(f"Input CSV not found: {in_csv.resolve()}")
 
-plt.figure(figsize=(16,8))
+    # Read CSV
+    df = pd.read_csv(in_csv, dtype={"PID": str})
 
-plt.subplot(3,1,1)
-plt.plot(t, z["I"])
-plt.ylabel("Lead I (mV)")
-plt.title("Full Disclosure ECG – Entire Recording")
+    # 1) Drop strip_signal_path column if exists
+    if "strip_signal_path" in df.columns:
+        df = df.drop(columns=["strip_signal_path"])
 
-plt.subplot(3,1,2)
-plt.plot(t, z["II"])
-plt.ylabel("Lead II (mV)")
+    # 2) Keep only rows with non-empty full_signal_path
+    df = df[df["full_signal_path"].notna()]
+    df = df[df["full_signal_path"].astype(str).str.strip() != ""]
 
-plt.subplot(3,1,3)
-plt.plot(t, z["III"])
-plt.ylabel("Lead III (mV)")
-plt.xlabel("Time (seconds)")
+    # Optional: reset index
+    df = df.reset_index(drop=True)
 
-plt.tight_layout()
-plt.savefig(out_png, dpi=150)
-plt.close()
+    # Save cleaned CSV
+    df.to_csv(out_csv, index=False)
 
-print(f"Saved plot to: {out_png}")
+    print(f"Saved cleaned metadata to: {out_csv.resolve()}")
+    print(f"Rows kept: {len(df)}")
+
+
+if __name__ == "__main__":
+    main()
