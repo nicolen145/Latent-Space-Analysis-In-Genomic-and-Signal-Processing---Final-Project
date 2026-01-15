@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="ISO8859-1" ?>
+<CardiologyXML>
+		<ObservationType>StressTest</ObservationType>
+		<ObservationDateTime>
+			<Hour>16</Hour>
+			<Minute>44</Minute>
+			<Second>7</Second>
+			<Day>26</Day>
+			<Month>3</Month>
+			<Year>2010</Year>
+		</ObservationDateTime>
+		<ObservationEndDateTime>
+			<Hour>16</Hour>
+			<Minute>46</Minute>
+			<Second>7</Second>
+			<Day>26</Day>
+			<Month>3</Month>
+			<Year>2010</Year>
+		</ObservationEndDateTime>
+	<ClinicalInfo>
+		<DeviceInfo>
+			<Desc>CardioSoft</Desc>
+			<SoftwareVer>V6.51</SoftwareVer>
+			<AnalysisVer>6.0</AnalysisVer>
+		</DeviceInfo>
+	</ClinicalInfo>
+	<PatientVisit>
+		<PatientClass>O</PatientClass>
+		<AssignedPatientLocation>
+			<LocationNumber>180773920</LocationNumber>
+		</AssignedPatientLocation>
+		<AdmissionType>ROUT</AdmissionType>
+	</PatientVisit>
+	<PatientInfo>
+		<PID>1</PID>
+		<Name>
+			<FamilyName>1</FamilyName>
+			<GivenName>ACE</GivenName>
+		</Name>
+		<Age units="YEARS">57</Age>
+		<BirthDateTime>
+			<Day>26</Day>
+			<Month>3</Month>
+			<Year>1953</Year>
+		</BirthDateTime>
+		<Gender>FEMALE</Gender>
+		<Race>UNKNOWN</Race>
+		<Height units="CENTIMETERS">175</Height>
+		<Weight units="KILOGRAMS">75.0</Weight>
+		<PaceMaker>no</PaceMaker>
+	</PatientInfo>
+	<Medications>
+	</Medications>
+	<ExerciseMeasurements>
+		<MaxWorkload units="watts">0</MaxWorkload>
+		<ExercisePhaseTime>
+			<Minute>0</Minute>
+			<Second>0</Second>
+		</ExercisePhaseTime>
+		<MaxHeartRate>77</MaxHeartRate>
+		<MaxPredictedHR>163</MaxPredictedHR>
+		<TargetHeartRate achieved="no">130</TargetHeartRate>
+		<PercentAchievedMaxPredicted>47</PercentAchievedMaxPredicted>
+		<TargetHRFormula>(220 - Age)*80%</TargetHRFormula>
+		<TargetLoad units="W">132</TargetLoad>		<STHRSlope>
+			<STHRSlopeLead lead="I" maxslope="yes">
+				<Slope>0.00</Slope>
+				<Intercept>0.0</Intercept>
+				<Correlation>0.000</Correlation>
+				<NumPoints>0</NumPoints>
+			</STHRSlopeLead>
+			<STHRSlopeLead lead="2">
+				<Slope>0.00</Slope>
+				<Intercept>0.0</Intercept>
+				<Correlation>0.000</Correlation>
+				<NumPoints>0</NumPoints>
+			</STHRSlopeLead>
+			<STHRSlopeLead lead="3">
+				<Slope>0.00</Slope>
+				<Intercept>0.0</Intercept>
+				<Correlation>0.000</Correlation>
+				<NumPoints>0</NumPoints>
+			</STHRSlopeLead>
+		</STHRSlope>
+		<MaxSTStats>
+			<MaxSTAmplitude lead="" units="mV">--</MaxSTAmplitude>
+			<MaxSTTime>
+				<Minute>0</Minute>
+				<Second>0</Second>
+			</MaxSTTime>
+			<MaxSTHR>71</MaxSTHR>
+			<MaxSTMets>1.0</MaxSTMets>
+			<MaxSTVES>0</MaxSTVES>
+			<MaxST>
+				<Measurements lead="I">
+					<STAmplitude units="mV"> 0.01</STAmplitude>
+					<STSlope units="mV/s"> 0.14</STSlope>
+				</Measurements>
+				<Measurements lead="2">
+					<STAmplitude units="mV"> 0.00</STAmplitude>
+					<STSlope units="mV/s">-0.80</STSlope>
+				</Measurements>
+				<Measurements lead="3">
+					<STAmplitude units="mV"> 0.00</STAmplitude>
+					<STSlope units="mV/s">-0.04</STSlope>
+				</Measurements>
+			</MaxST>
+		</MaxSTStats>
+	</ExerciseMeasurements>
+	<Interpretation>
+	</Interpretation>
+	<Protocol>
+		<Device>Ergometer</Device>
+		<Phase ramping="no">
+			<ProtocolName>R</ProtocolName>
+			<PhaseName>Pretest</PhaseName>
+			<PhaseDuration>
+				<Minute>2</Minute>
+				<Second>0</Second>
+			</PhaseDuration>
+			<Stage idx="0">
+				<StageName>Steady</StageName>
+				<StageDuration>
+					<Minute>2</Minute>
+					<Second>0</Second>
+				</StageDuration>
+			</Stage>
+		</Phase>
+		<Phase ramping="no">
+			<ProtocolName></ProtocolName>
+			<PhaseName>Exercise</PhaseName>
+			<PhaseDuration>
+				<Minute>0</Minute>
+				<Second>0</Second>
+			</PhaseDuration>
+		</Phase>
+		<Phase ramping="no">
+			<ProtocolName></ProtocolName>
+			<PhaseName>Rest</PhaseName>
+			<PhaseDuration>
+				<Minute>0</Minute>
+				<Second>0</Second>
+			</PhaseDuration>
+		</Phase>
+	</Protocol>
+	<TrendData>
+		<NumberOfEntries>2</NumberOfEntries>
+		<TrendEntry Idx="0">
+			<EntryTime>
+				<Minute>0</Minute>
+				<Second>0</Second>
+			</EntryTime>
+			<HeartRate>71</HeartRate>
+			<Mets>1.0</Mets>
+			<VECount>0</VECount>
+			<PaceCount>0</PaceCount>
+			<Artifact>0%</Artifact>
+			<LeadMeasurements lead="I">
+				<JPointAmplitude units="mV"> 0.01</JPointAmplitude>
+				<STAmplitude20ms units="mV">-0.01</STAmplitude20ms>
+				<STAmplitude units="mV"> 0.01</STAmplitude>
+				<RAmplitude units="mV"> 0.55</RAmplitude>
+				<R1Amplitude units="mV">-32.77</R1Amplitude>
+				<STSlope units="mV/s"> 0.14</STSlope>
+				<STIntegral>0</STIntegral>
+				<STIndex>abnormal</STIndex>
+			</LeadMeasurements>
+			<LeadMeasurements lead="2">
+				<JPointAmplitude units="mV">-0.01</JPointAmplitude>
+				<STAmplitude20ms units="mV"> 0.01</STAmplitude20ms>
+				<STAmplitude units="mV"> 0.00</STAmplitude>
+				<RAmplitude units="mV"> 0.06</RAmplitude>
+				<R1Amplitude units="mV">-32.77</R1Amplitude>
+				<STSlope units="mV/s">-0.80</STSlope>
+				<STIntegral>0</STIntegral>
+				<STIndex>abnormal</STIndex>
+			</LeadMeasurements>
+			<LeadMeasurements lead="3">
+				<JPointAmplitude units="mV"> 0.00</JPointAmplitude>
+				<STAmplitude20ms units="mV">-0.01</STAmplitude20ms>
+				<STAmplitude units="mV"> 0.00</STAmplitude>
+				<RAmplitude units="mV"> 0.28</RAmplitude>
+				<R1Amplitude units="mV">-32.77</R1Amplitude>
+				<STSlope units="mV/s">-0.04</STSlope>
+				<STIntegral>0</STIntegral>
+				<STIndex>abnormal</STIndex>
+			</LeadMeasurements>
+			<Load units="W">0</Load>
+			<Grade units="rpm">0.0</Grade>
+			<PhaseTime>
+				<Minute>0</Minute>
+				<Second>0</Second>
+			</PhaseTime>
+			<PhaseName>Pretest</PhaseName>
+			<StageTime>
+				<Minute>0</Minute>
+				<Second>0</Second>
+			</StageTime>
+			<StageNumber>1</StageNumber>
+			<StageName>Steady</StageName>
+		</TrendEntry>
+		<TrendEntry Idx="1">
+			<EntryTime>
+				<Minute>2</Minute>
+				<Second>0</Second>
+			</EntryTime>
+			<HeartRate>77</HeartRate>
+			<Mets>1.0</Mets>
+			<VECount>0</VECount>
+			<PaceCount>0</PaceCount>
+			<Artifact>0%</Artifact>
+			<LeadMeasurements lead="I">
+				<JPointAmplitude units="mV"> 0.03</JPointAmplitude>
+				<STAmplitude20ms units="mV"> 0.01</STAmplitude20ms>
+				<STAmplitude units="mV"> 0.03</STAmplitude>
+				<RAmplitude units="mV"> 0.47</RAmplitude>
+				<R1Amplitude units="mV">-32.77</R1Amplitude>
+				<STSlope units="mV/s"> 0.10</STSlope>
+				<STIntegral>0</STIntegral>
+				<STIndex>abnormal</STIndex>
+			</LeadMeasurements>
+			<LeadMeasurements lead="2">
+				<JPointAmplitude units="mV">-0.03</JPointAmplitude>
+				<STAmplitude20ms units="mV">-0.01</STAmplitude20ms>
+				<STAmplitude units="mV">-0.03</STAmplitude>
+				<RAmplitude units="mV"> 0.05</RAmplitude>
+				<R1Amplitude units="mV">-32.77</R1Amplitude>
+				<STSlope units="mV/s">-0.76</STSlope>
+				<STIntegral>0</STIntegral>
+				<STIndex>normal</STIndex>
+			</LeadMeasurements>
+			<LeadMeasurements lead="3">
+				<JPointAmplitude units="mV"> 0.01</JPointAmplitude>
+				<STAmplitude20ms units="mV"> 0.01</STAmplitude20ms>
+				<STAmplitude units="mV"> 0.01</STAmplitude>
+				<RAmplitude units="mV"> 0.23</RAmplitude>
+				<R1Amplitude units="mV">-32.77</R1Amplitude>
+				<STSlope units="mV/s"> 0.00</STSlope>
+				<STIntegral>0</STIntegral>
+				<STIndex>abnormal</STIndex>
+			</LeadMeasurements>
+			<Load units="W">0</Load>
+			<Grade units="rpm">0.0</Grade>
+			<PhaseTime>
+				<Minute>2</Minute>
+				<Second>0</Second>
+			</PhaseTime>
+			<PhaseName>Pretest</PhaseName>
+			<StageTime>
+				<Minute>2</Minute>
+				<Second>0</Second>
+			</StageTime>
+			<StageNumber>1</StageNumber>
+			<StageName>Steady</StageName>
+		</TrendEntry>
+	</TrendData>
+	<MedianData>
+			<SampleRate units="Hz">500</SampleRate>
+			<Resolution units="uVperLsb">5.0</Resolution>
+	</MedianData>
+	<TWACycleData>
+			<SampleRate units="Hz">500</SampleRate>
+			<Resolution units="uVperLsb">5.0</Resolution>
+	</TWACycleData>
+	<StripData>
+		<SampleRate units="Hz">500</SampleRate>
+		<Resolution units="uVperLsb">5.0</Resolution>
+	</StripData>
+	<ArrhythmiaData>
+		<SampleRate units="Hz">500</SampleRate>
+		<Resolution units="uVperLsb">5.0</Resolution>
+	</ArrhythmiaData>
+	<FullDisclosure>
+Error reading file C:\DOCUME~1\UKBBUser\LOCALS~1\Temp\ONL1A.tmp
+	</FullDisclosure>
+</CardiologyXML>

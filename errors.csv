@@ -1,0 +1,55 @@
+file_name,error
+1002688_6025_0_0.xml,Incorrect padding
+1003256_6025_0_0.xml,buffer size must be a multiple of element size
+1004007_6025_0_0.xml,buffer size must be a multiple of element size
+1008521_6025_0_0.xml,Missing NumberOfChannels or SampleRate
+1010942_6025_0_0.xml,Missing NumberOfChannels or SampleRate
+1012034_6025_0_0.xml,Invalid base64-encoded string: number of data characters (852733) cannot be 1 more than a multiple of 4
+1013103_6025_0_0.xml,Invalid base64-encoded string: number of data characters (889861) cannot be 1 more than a multiple of 4
+1015377_6025_0_0.xml,Invalid base64-encoded string: number of data characters (1022193) cannot be 1 more than a multiple of 4
+1016890_6025_0_0.xml,buffer size must be a multiple of element size
+1018708_6025_0_0.xml,buffer size must be a multiple of element size
+1019264_6025_0_0.xml,Incorrect padding
+1019533_6025_0_0.xml,buffer size must be a multiple of element size
+1019875_6025_0_0.xml,Incorrect padding
+1022717_6025_0_0.xml,Incorrect padding
+1023819_6025_0_0.xml,Missing NumberOfChannels or SampleRate
+1027707_6025_0_0.xml,Incorrect padding
+1033544_6025_0_0.xml,Incorrect padding
+1033769_6025_0_0.xml,Invalid base64-encoded string: number of data characters (209553) cannot be 1 more than a multiple of 4
+1034964_6025_0_0.xml,Incorrect padding
+1036119_6025_0_0.xml,Invalid base64-encoded string: number of data characters (1085289) cannot be 1 more than a multiple of 4
+1040453_6025_0_0.xml,Invalid base64-encoded string: number of data characters (1031633) cannot be 1 more than a multiple of 4
+1042391_6025_0_0.xml,Incorrect padding
+1043355_6025_0_0.xml,Incorrect padding
+1046829_6025_0_0.xml,Invalid base64-encoded string: number of data characters (904513) cannot be 1 more than a multiple of 4
+1047831_6025_0_0.xml,Incorrect padding
+1050464_6025_0_0.xml,Incorrect padding
+1053750_6025_0_0.xml,Missing NumberOfChannels or SampleRate
+1055909_6025_0_0.xml,Invalid base64-encoded string: number of data characters (1131749) cannot be 1 more than a multiple of 4
+1056309_6025_0_0.xml,Invalid base64-encoded string: number of data characters (762209) cannot be 1 more than a multiple of 4
+1057644_6025_0_0.xml,Incorrect padding
+1060577_6025_0_0.xml,Incorrect padding
+1061974_6025_0_0.xml,Missing NumberOfChannels or SampleRate
+1063403_6025_0_0.xml,Invalid base64-encoded string: number of data characters (996277) cannot be 1 more than a multiple of 4
+1064528_6025_0_0.xml,Invalid base64-encoded string: number of data characters (879577) cannot be 1 more than a multiple of 4
+1067759_6025_0_0.xml,Incorrect padding
+1069285_6025_0_0.xml,Invalid base64-encoded string: number of data characters (882677) cannot be 1 more than a multiple of 4
+1070083_6025_0_0.xml,Incorrect padding
+1070513_6025_0_0.xml,Incorrect padding
+1071667_6025_0_0.xml,Incorrect padding
+1072991_6025_0_0.xml,Incorrect padding
+1073272_6025_0_0.xml,Incorrect padding
+1074157_6025_0_0.xml,Invalid base64-encoded string: number of data characters (860717) cannot be 1 more than a multiple of 4
+1076938_6025_0_0.xml,Missing NumberOfChannels or SampleRate
+1078147_6025_0_0.xml,Invalid base64-encoded string: number of data characters (1030561) cannot be 1 more than a multiple of 4
+1079457_6025_0_0.xml,Incorrect padding
+1079813_6025_0_0.xml,Incorrect padding
+1080030_6025_0_0.xml,Incorrect padding
+1083730_6025_0_0.xml,Missing NumberOfChannels or SampleRate
+1087599_6025_0_0.xml,Invalid base64-encoded string: number of data characters (921569) cannot be 1 more than a multiple of 4
+1094231_6025_0_0.xml,Invalid base64-encoded string: number of data characters (213777) cannot be 1 more than a multiple of 4
+1094429_6025_0_0.xml,Incorrect padding
+1095206_6025_0_0.xml,Missing NumberOfChannels or SampleRate
+1097234_6025_0_0.xml,Invalid base64-encoded string: number of data characters (1074485) cannot be 1 more than a multiple of 4
+1099786_6025_0_0.xml,Incorrect padding
