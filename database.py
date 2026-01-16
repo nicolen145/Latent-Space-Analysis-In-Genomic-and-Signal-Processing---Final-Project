@@ -6,12 +6,9 @@ import xml.etree.ElementTree as ET
 import numpy as np
 import pandas as pd
 
-# ----------------------------
-# Configuration
-# ----------------------------
 
-# Folder containing your ECG XML files (e.g., 60 files)
-# Put your XML files inside a folder named "Fitness" next to this script.
+# Configuration
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 INPUT_DIR = os.path.join(BASE_DIR, "Fitness")
 
@@ -23,10 +20,7 @@ OUT_ERRORS_CSV = os.path.join(BASE_DIR, "errors.csv")
 os.makedirs(OUT_SIGNALS_DIR, exist_ok=True)
 
 
-# ----------------------------
 # Helpers (XML parsing)
-# ----------------------------
-
 def safe_text(elem):
     """Return stripped text if exists, else None."""
     if elem is None or elem.text is None:
@@ -66,7 +60,6 @@ def extract_metadata(root, file_name):
             continue
 
         if tag == "age":
-            # Age is typically an integer (e.g., "45")
             try:
                 meta["Age"] = int(float(value))
             except Exception:
@@ -76,7 +69,6 @@ def extract_metadata(root, file_name):
             meta["Gender"] = value
 
         elif tag == "height":
-            # Height often comes as number (e.g., "175")
             try:
                 meta["Height"] = int(float(value))
             except Exception:
@@ -156,9 +148,7 @@ def decode_fulldisclosure_to_table(root):
     return df
 
 
-# ----------------------------
 # Main (batch processing)
-# ----------------------------
 
 def main():
     if not os.path.isdir(INPUT_DIR):
