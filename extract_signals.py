@@ -146,12 +146,12 @@ def save_npz(out_path: Path, fs_hz: float, signals: dict[str, np.ndarray]):
 
 
 def main():
-    # ---- paths (repo layout from your screenshot)
+
     xml_dir = Path("Fitness")
     full_dir = Path("parsed_signals_full")
     strip_dir = Path("parsed_signals_strip")
 
-    # Your CSV name (without extension is fine; we’ll support both)
+
     meta_csv = Path("metadata_all.csv") if Path("metadata_all.csv").exists() else Path("metadata_all")
 
     if not meta_csv.exists():
@@ -160,7 +160,7 @@ def main():
     # Read metadata (PID must be string to avoid losing leading zeros)
     meta_df = pd.read_csv(meta_csv, dtype={"PID": str})
 
-    # Ensure columns exist (we add them)
+    # Ensure columns exist 
     if "full_signal_path" not in meta_df.columns:
         meta_df["full_signal_path"] = ""
     if "strip_signal_path" not in meta_df.columns:
@@ -222,9 +222,7 @@ def main():
     meta_df.to_csv(out_csv, index=False)
     print(f"\nSaved updated metadata to: {out_csv.resolve()}")
 
-    # Optional: overwrite original (commented by default)
-    # meta_df.to_csv(meta_csv, index=False)
-    # print(f"Overwrote original metadata: {meta_csv.resolve()}")
+
 
 
 if __name__ == "__main__":
