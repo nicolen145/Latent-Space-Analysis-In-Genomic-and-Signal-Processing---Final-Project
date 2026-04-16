@@ -1,0 +1,6 @@
+latent_dim,best_val_total_loss,best_val_recon_loss,best_val_kl_loss,model_path
+32,0.3996133506298065,0.3356255292892456,0.0010871818521991372,vae_multi_latent_outputs_2/best_vae_latent_32.pt
+16,0.47212833166122437,0.37781423330307007,0.0007901213830336928,vae_multi_latent_outputs_2/best_vae_latent_16.pt
+8,0.5498067140579224,0.4829159677028656,0.0006771311163902283,vae_multi_latent_outputs_2/best_vae_latent_8.pt
+4,0.5868056416511536,0.5818951725959778,0.0009119145106524229,vae_multi_latent_outputs_2/best_vae_latent_4.pt
+2,0.5988184809684753,0.5978094339370728,0.00017760558694135398,vae_multi_latent_outputs_2/best_vae_latent_2.pt

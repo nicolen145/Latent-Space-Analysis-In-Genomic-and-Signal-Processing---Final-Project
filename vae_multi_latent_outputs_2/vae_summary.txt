@@ -1,0 +1,12 @@
+CSV_PATH: fft_features/fft_features_pid_clean.csv
+Input shape: (52, 19)
+Input dim: 18
+Latent dims tested: [2, 4, 8, 16, 32]
+Best latent dim: 32
+Best validation total loss: 0.3996133506298065
+Best validation recon loss: 0.3356255292892456
+Best validation kl loss: 0.0010871818521991372
+Beta: 3.0
+Epochs: 80
+Batch size: 32
+Learning rate: 0.001
