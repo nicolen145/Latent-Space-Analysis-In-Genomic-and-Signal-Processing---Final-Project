@@ -1,0 +1,9 @@
+metric,value
+num_patients,52.0
+num_features,18.0
+num_latent_dims,32.0
+mean_reconstruction_error,0.655640172673077
+median_reconstruction_error,0.44928144
+max_reconstruction_error,2.5648448
+min_reconstruction_error,0.054748453
+mean_true_feature_mse,5.558546593473427
