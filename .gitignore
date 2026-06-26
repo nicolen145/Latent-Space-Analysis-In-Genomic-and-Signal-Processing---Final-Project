@@ -1,0 +1,38 @@
+# Data / UK Biobank files
+data/
+*.zip
+*.npz
+*.csv
+*.csv.gz
+*.tsv
+*.tsv.gz
+
+# Trained models / checkpoints
+*.pt
+*.pth
+*.ckpt
+
+# GWAS outputs
+GWAS_results/
+GWAS_full_phase_matrix/
+*.glm.linear
+*.glm.log
+
+# SLURM outputs
+*.out
+*.err
+*.log
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Temporary files
+tmp/
+scratch/
+*.tmp
+
+# IDE / system files
+.vscode/
+.idea/
+.DS_Store
