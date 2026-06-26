@@ -1,0 +1,7 @@
+numpy
+pandas
+matplotlib
+PyWavelets
+scikit-learn
+umap-learn
+torch
