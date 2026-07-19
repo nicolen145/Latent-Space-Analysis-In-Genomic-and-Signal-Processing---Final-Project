@@ -12,7 +12,7 @@ This repository contains the code, figures, and documentation for our final proj
 **Latent Space Analysis in Genomics and Signal Processing**.
 
 The project focuses on learning latent representations from exercise ECG signals and using them as phenotypes for genetic association analysis.  
-We analyzed ECG recordings from different physiological phases — **Pretest**, **Exercise**, and **Rest** — and investigated whether genetic associations differ between these phases.
+We analyzed ECG recordings from different physiological phases - **Pretest**, **Exercise**, and **Rest** - and investigated whether genetic associations differ between these phases.
 
 ---
 
